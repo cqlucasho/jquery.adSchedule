@@ -1,5 +1,8 @@
 /**
  * ad_schedule
+ * 
+ * @author lucasho <cqlucasho@gmail.com>
+ * @update 2013.9.12
  * @version 1.0
  *
  * example:
