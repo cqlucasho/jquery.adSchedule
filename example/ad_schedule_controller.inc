@@ -72,7 +72,8 @@
                         $cond['AdAd.start <'] = strtotime($yearMonth.'-'.$currMonthMaxDay);
                         $cond['AdAd.end >='] = strtotime($yearMonth.$day);
                     }
-
+                    
+                    # 查询数据库记录并取出结果集
                     $positions = AdAd::findAll($cond, array('joins'=>'adposition'))
                         ->fields('AdAd.position_id, AdAd.start as AdStart, AdAd.end as AdEnd, AdPosition.name as ApName,
                                       AdPosition.layout_width, AdPosition.layout_height, AdPosition.ad_num')
@@ -136,7 +137,7 @@
                         $str = implode('-',$currStartTime);
                     }
 
-                    # 判断是否从1号还是从前当月号数开始填充
+                    # 判断是否从1号还是从本月当前天数开始填充
                     if( ($row['start'] <= strtotime($yearMonth.$day)) &&
                         ($row['end'] >= strtotime($yearMonth.$day)) &&
                         ($currStartTime[1] != $yearMonthArr[1]) ) {
