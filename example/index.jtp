@@ -4,6 +4,7 @@
     $view->helpers(array('paginate'));
 ?>
 <?php $view->contentFor('head', function(){?>
+    // 下面css跟adSchedule.css一样
     <style type="text/css">
         .status {
             margin-top: 30px;
