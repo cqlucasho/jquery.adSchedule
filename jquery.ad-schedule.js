@@ -13,7 +13,9 @@
  *                    downDom: '#downcsv',
  *                    selectDom: '#selectViewDate',
  *                    selectStart: '#selectStart',
- *                    selectEnd: '#selectEnd'
+ *                    selectEnd: '#selectEnd',
+ *                    prevMonth: '.prevMonth',
+ *                    nextMonth: '.nextMonth'
  *                });
  */
 (function($) {
@@ -34,7 +36,11 @@
             // 指定开始日期dom
             selectStart: '#selectStart',
             // 指定结束日期dom
-            selectEnd: '#selectEnd'
+            selectEnd: '#selectEnd',
+            // 指定上一月按钮dom
+            prevMonth: '.prevMonth',
+            // 指定上一月按钮dom
+            nextMonth: '.nextMonth'
         };
         var opts = $.extend({}, defaults, options);
 
@@ -91,10 +97,10 @@
              */
             bindPrevNext: function() {
                 var self = this;
-                $('.prevMonth').live('click', function() {
+                $(opts.prevMonth).live('click', function() {
                     self._bindPrevHandler();
                 });
-                $('.nextMonth').live('click', function() {
+                $(opts.nextMonth).live('click', function() {
                     self._bindNextHandler();
                 });
             },
@@ -395,6 +401,5 @@
             $('.ui-schedule-tip').remove();
         });
     };
-
 
 })(jQuery);
