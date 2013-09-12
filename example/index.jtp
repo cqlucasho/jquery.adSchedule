@@ -1,0 +1,210 @@
+<?php
+    $view->layout('default');
+    $view->contentFor('title', '广告排期表');
+    $view->helpers(array('paginate'));
+?>
+<?php $view->contentFor('head', function(){?>
+    <style type="text/css">
+        .status {
+            margin-top: 30px;
+        }
+        .status .span8 li > i {
+            display: inline-block;
+            vertical-align: -4px;
+            width: 20px;
+            height: 20px;
+        }
+        .status .span8 ul {
+            list-style: none;
+            display: block;
+            margin: 5px 0 0 0;
+        }
+        .status .span8 li {
+            display: inline;
+            margin-right: 30px;
+        }
+
+        .table th,
+        .table td {
+            text-align: center;
+            height: 32px;
+            padding: 0px;
+            vertical-align: middle;
+        }
+        tbody tr td {
+            text-align: center;
+        }
+        .table tbody tr > td,
+        .show-days td {
+            border-left: 1px solid #e1e1e8;
+            width: 26px;
+        }
+
+        tbody tr > td.all-sell {
+            background: -webkit-linear-gradient(top, #5bb75b 0%, #5bb75b);
+        }
+        tbody tr > td.parts-sell {
+            background: -webkit-linear-gradient(top, #f7f7f7 30%, #46a546);
+        }
+        tbody tr > td.all-scheduled {
+            background: -webkit-linear-gradient(top, #a9dba9 0%, #a9dba9);
+        }
+        tbody tr > td.parts-scheduled {
+            background: -webkit-linear-gradient(top, #f7f7f7 30%, #a9dba9);
+        }
+        tbody tr > td.schedule-free {
+            background-color: #ffffff;
+        }
+        tbody tr > td.currday {
+            background:  -webkit-linear-gradient(top, #ee5f5b 0%, #ee5f5b);
+        }
+        tbody tr > td.all-sell a {
+            height: 26px;
+            position: relative;
+            display: block;
+        }
+        tbody tr > td.parts-sell a {
+            height: 26px;
+            position: relative;
+            display: block;
+        }
+
+        i.linear-color1 {
+            background-color: #46a546;
+        }
+        i.linear-color2 {
+            background: -webkit-linear-gradient(top, #f7f7f7 30%, #46a546);
+        }
+        i.linear-color3 {
+            background-color: #a9dba9;
+        }
+        i.linear-color4 {
+            background: -webkit-linear-gradient(top, #f7f7f7 30%, #a9dba9);
+        }
+        i.linear-color5 {
+            background-color: #ffffff;
+        }
+
+        .hover-bgcolor {
+            background-color: #f3f3f3;
+        }
+
+        .prevMonth, .nextMonth {
+            cursor: pointer;
+        }
+
+
+        .ui-schedule-glass {
+            background: url("http://adm.baidu.com/assets/img/BlockSprites.png?v=6891") no-repeat scroll -41px -495px transparent;
+            height: 15px;
+            margin: 6px;
+            position: absolute;
+            width: 15px;
+        }
+        .ui-schedule-tip {
+            background: #FFF;
+            position: absolute;
+            z-index: 200;
+        }
+        .ui-schedule-tip .tip-close {
+            position: absolute;
+            right: 11px;
+            top: 8px;
+            background: #C7DEEC url("http://adm.baidu.com/assets/img/BlockSprites.png?v=6891") -180px -240px no-repeat;
+            display: block;
+            height: 11px;
+            width: 11px;
+            overflow: hidden;
+        }
+        .ui-schedule-tip .tip-close:hover {
+            background-position: -180px -251px;
+        }
+        .ui-schedule-tip .tip-head {
+            border-width: 1px 1px 0 1px;
+            border-style: solid;
+            border-color: #9ecae8;
+            background: #c7deed;
+            height: 24px;
+            width: 320px;
+        }
+        .ui-schedule-tip .tip-headcntr {
+            height: 24px;
+            line-height: 27px;
+            color: #1c4a79;
+            border-top: 1px solid #d8e8f2;
+        }
+        .ui-schedule-tip .tip-main {
+            border: 1px solid #9ecae8;
+            zoom: 1;
+            padding: 5px 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            width: 320px;
+        }
+        .ui-schedule-tip .tip-main dl {
+            border-bottom: 1px solid #9ECAE8;
+            padding: 5px 0;
+            margin: 0 10px;
+            font-size: 12px;
+        }
+        .ui-schedule-tip .tip-main dt {
+            float: left;
+            padding: 3px 0;
+            width: 65px;
+            line-height: 15px;
+            height: 15px;
+        }
+        .ui-schedule-tip .tip-main dd {
+            padding: 3px 0 3px 0;
+            margin-bottom: 1px;
+            margin-left: 65px;
+            zoom: 1;
+            line-height: 15px;
+        }
+    </style>
+<?php });?>
+
+<?php $view->contentFor('actions', function() {?>
+    <ul class="nav">
+        <li><?php echo _linkTo('<i class="icon-white icon-shopping-cart"></i> 预定', array('module'=>'ad','controller'=>'index','action'=>'add'), array('target'=>'_blank'));?></li>
+        <li><?php echo _linkTo('下载排期表',array('action'=>''));?></li>
+        <li><?php echo _linkTo('返回',array('module'=>'ad','package'=>'admins','controller'=>'index','action'=>'index'));?></li>
+    </ul>
+<?php });?>
+
+<?php $view->contentFor('archive', function($view) {?>
+    <div class="status well" style="padding-top: 10px;"></div>
+
+    <div class="row-fluid" id="AdMain"></div>
+
+    <div class="pagination form-actions">
+        <?php echo _paginateNumbers($view['positions']);?>
+    </div>
+<?php });?>
+
+<?php $view->contentFor('foot', function() {?>
+    <script src="/plugins/jquery.ad-schedule.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        (function($) {
+            $.AdSchedule({
+                head: $('.status'),
+                postUrl: "<?php echo _url(array('action'=>'select'));?>"
+            });
+
+            $('.show-days td').live('hover', function() {
+                var coln = $(this).prevAll().length;
+                var ele = $(this).parent('tr').parent('thead').nextUntil('tbody');
+
+                ele.find('tr').each(function() {
+                    var col = $(this).find('td').filter(':eq('+coln+')');
+                    col.toggleClass('hover-bgcolor');
+                });
+            });
+
+            $('#selectDate > button').click(function() {
+                var value = $('input[name="q"]').val();
+                $.get('<?php echo _url(array('action'=>'selectDate'));?>', {'value':value});
+            });
+        })(jQuery);
+    </script>
+<?php });?>
