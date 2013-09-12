@@ -4,6 +4,17 @@
  * @author lucasho <cqlucasho@gmail.com>
  * @update 2013.9.12
  * @version 1.0
+ * 
+ * example:
+ *     $.AdSchedule({
+ *                    head: $('.status'),
+ *                    postUrl: "<?php echo _url(array('action'=>'select'));?>",
+ *                    downcsv: "<?php echo _url(array('action'=>'export'));?>",
+ *                    downDom: $('#downcsv'),
+ *                    selectDom: $('#selectViewDate'),
+ *                    selectStart: $('#selectStart'),
+ *                    selectEnd: $('#selectEnd')
+ *                });
  */
 (function($) {
     $.AdSchedule = function(options) {
@@ -15,7 +26,15 @@
             // 提交处理的URL地址
             postUrl: '',
             // 表格的下载URl地址
-            downcsv: ''
+            downcsv: '',
+            // 表格下载按钮dom
+            downDom: $('#downcsv'),
+            // 指定日期提交按钮
+            selectDom: $('#selectViewDate'),
+            // 指定日期开始日期dom
+            selectStart: $('#selectStart'),
+            // 指定日期结束日期dom
+            selectEnd: $('#selectEnd')
         };
         var opts = $.extend({}, defaults, options);
 
