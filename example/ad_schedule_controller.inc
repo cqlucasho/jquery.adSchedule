@@ -2,9 +2,6 @@
     /**
      * ad_schedule_controller 提供广告排期表管理。
      *
-     * @copyright     2012-2013 jtita.com (http://www.jtita.com)
-     * @author        heshuang
-     *
      * @package       ad.controllers
      * @version       1.0
      *
