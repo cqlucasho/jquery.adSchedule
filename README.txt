@@ -13,6 +13,7 @@ Array
             [adNum] => 3				# 广告位的最大广告数
             [adData] => Array				# 广告位下面的广告保存变量		
                 (
+                    # adData数组下面只允许出现一个多维数组
                     [0] => Array
                         (
                             [1] => Array		# 1表示: 广告位
