@@ -1,19 +1,16 @@
 /**
  * ad_schedule
- * 
- * @author lucasho <cqlucasho@gmail.com>
- * @update 2013.9.12
  * @version 1.0
- * 
+ *
  * example:
  *     $.AdSchedule({
  *                    head: $('.status'),
  *                    postUrl: "<?php echo _url(array('action'=>'select'));?>",
  *                    downcsv: "<?php echo _url(array('action'=>'export'));?>",
- *                    downDom: $('#downcsv'),
- *                    selectDom: $('#selectViewDate'),
- *                    selectStart: $('#selectStart'),
- *                    selectEnd: $('#selectEnd')
+ *                    downDom: '#downcsv',
+ *                    selectDom: '#selectViewDate',
+ *                    selectStart: '#selectStart',
+ *                    selectEnd: '#selectEnd'
  *                });
  */
 (function($) {
@@ -28,13 +25,13 @@
             // 表格的下载URl地址
             downcsv: '',
             // 表格下载按钮dom
-            downDom: $('#downcsv'),
+            downDom: '#downcsv',
             // 指定日期提交按钮
-            selectDom: $('#selectViewDate'),
-            // 指定日期开始日期dom
-            selectStart: $('#selectStart'),
-            // 指定日期结束日期dom
-            selectEnd: $('#selectEnd')
+            selectDom: '#selectViewDate',
+            // 指定开始日期dom
+            selectStart: '#selectStart',
+            // 指定结束日期dom
+            selectEnd: '#selectEnd'
         };
         var opts = $.extend({}, defaults, options);
 
@@ -360,9 +357,9 @@
         });
 
         // 日期查找
-        $('#selectViewDate').live('click', function() {
-            var start = $('input[id="selectStart"]').val();
-            var end = $('input[id="selectEnd"]').val();
+        $(opts.selectDom).live('click', function() {
+            var start = $(opts.selectStart).val();
+            var end = $(opts.selectEnd).val();
             var month = start.split('-');
             obj.currDate.setMonth(month[1]-1);
             var result = '';
@@ -386,7 +383,7 @@
         /**
          * 下载排期表
          */
-        $('#downcsv').live('click', function() {
+        $(opts.downDom).live('click', function() {
             $.post(opts.downcsv, {table:obj.table});
         });
 
