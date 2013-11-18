@@ -6,8 +6,8 @@
  * example:
  *     $.AdSchedule({
  *                    head: $('.status'),
- *                    postUrl: "<?php echo _url(array('action'=>'select'));?>",
- *                    downcsv: "<?php echo _url(array('action'=>'export'));?>",
+ *                    postUrl: "<?php echo _url(array('action'=>'select'));?>", // 使用时，修改成对应的类方法或动作
+ *                    downcsv: "<?php echo _url(array('action'=>'export'));?>", // 使用时，修改成对应的类方法或动作
  *                    downDom: '#downcsv',
  *                    selectDom: '#selectViewDate',
  *                    selectStart: '#selectStart',
