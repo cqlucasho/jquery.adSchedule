@@ -6,38 +6,36 @@
 <?php $view->contentFor('head', function(){?>
     // 下面css跟adSchedule.css一样, 加载adSchedule.css就可以了
     <style type="text/css">
-        .status {
+        .statusBar {
             margin-top: 30px;
         }
-        .status .span8 li > i {
-            display: inline-block;
-            vertical-align: -4px;
+        .statusBar .col-md-7 a > i {
+            display: block;
+            float: left;
             width: 20px;
             height: 20px;
         }
-        .status .span8 ul {
-            list-style: none;
-            display: block;
-            margin: 5px 0 0 0;
-        }
-        .status .span8 li {
-            display: inline;
-            margin-right: 30px;
-        }
 
         .table th,
-        .table td {
+        .col-md-3 table tr {
             text-align: center;
             height: 32px;
             padding: 0px;
             vertical-align: middle;
+        }
+        .table>thead>tr>th {
+            border-bottom: 0px;
+        }
+        .table>thead>tr {
+            border-bottom: 1px solid #E4DDDD;
         }
         tbody tr td {
             text-align: center;
         }
         .table tbody tr > td,
         .show-days td {
-            border-left: 1px solid #e1e1e8;
+            border-left: 1px solid #CFCFCF;
+            border-bottom: 1px solid #cfcfcf;
             width: 26px;
         }
 
@@ -70,19 +68,19 @@
             display: block;
         }
 
-        i.linear-color1 {
+        .linear-color1 {
             background-color: #46a546;
         }
-        i.linear-color2 {
+        .linear-color2 {
             background: -webkit-linear-gradient(top, #f7f7f7 30%, #46a546);
         }
-        i.linear-color3 {
+        .linear-color3 {
             background-color: #a9dba9;
         }
-        i.linear-color4 {
+        .linear-color4 {
             background: -webkit-linear-gradient(top, #f7f7f7 30%, #a9dba9);
         }
-        i.linear-color5 {
+        .linear-color5 {
             background-color: #ffffff;
         }
 
@@ -93,7 +91,6 @@
         .prevMonth, .nextMonth {
             cursor: pointer;
         }
-
 
         .ui-schedule-glass {
             background: url("http://adm.baidu.com/assets/img/BlockSprites.png?v=6891") no-repeat scroll -41px -495px transparent;
