@@ -1,6 +1,8 @@
-更新到版本2.0
+更新到版本2.0日志：
 1. 支持到bootstrap前端框架3.0(不向下兼容)。
 2. 修改了一些BUG。
+
+之后会对插件的使用性和移植的灵活性做优化。
 
 效果展现形式类似 百度广告管家 的投放视图效果。
 效果图片：https://github.com/cqlucasho/jquery.adSchedule/wiki
