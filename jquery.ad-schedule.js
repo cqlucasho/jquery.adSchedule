@@ -1,8 +1,5 @@
 /**
  * ad_schedule
- * 
- * @author lucasho <cqlucasho@gmail.com>
- * @update 2013.9.12
  * @version 1.0
  *
  * example:
@@ -68,17 +65,24 @@
              * 填充状态头部内容
              */
             headRender: function() {
-                var head = '';
-                    head += "<div class='span4'><label class='pull-right'>";
-                    head += "<input type='date' name='start' class='span5' id='selectStart' /> 至 <span class='input-append'><input type='date' class='span9' name='end' id='selectEnd' />";
-                    head += "<button class='btn' id='selectViewDate'>查看</button></span></label></div>";
-                    head += "<div class='span8' style='text-align: right;'><ul><li><i class='linear-color1'></i> 全部售出</li>";
-                    head += '<li><i class="linear-color2"></i> 部分售出</li>';
-                    /*
-                     * head += '<li><i class="linear-color3"></i> 全部预定</li>';
-                     * head += '<li><i class="linear-color4"></i> 部分预定</li>';
-                     */
-                    head += '<li><i class="linear-color5"></i> 空闲</li></ul></div>';
+                var head = "<div class='col-md-5'><label class='col-md-3'><input type='date' name='start' class='form-control' id='selectStart'></label>";
+                head += "<span style='float:left;margin-left:12px;'>至</span><div class='input-group col-md-5'>"
+                head += "<input type='date' class='form-control' name='end' id='selectEnd'>";
+                head += '<span class="input-group-btn" id="selectViewDate">';
+                head += '<button class="btn btn-default" type="button" id="selectViewDate">查看</button></span></div>';
+                head += "</div>";
+                head += "<div class='col-md-7'>" +
+                            "<ul class='nav nav-pills pull-right'>" +
+                                "<li><a href='javascript:void(0);'><i class='linear-color1'></i> 全部售出</a></li>" +
+                                "<li><a href='javascript:void(0);'><i class='linear-color2'></i> 部分售出</a></li>" +
+                                /*
+                                 * '<li><i class="linear-color3"></i> 全部预定</li>';
+                                 * '<li><i class="linear-color4"></i> 部分预定</li>';
+                                 */
+                                "<li><a href='javascript:void(0);'><i class='linear-color5'></i> 空闲</a></li>" +
+                            "</ul>" +
+                        "</div>";
+                head += '</div>';
                 opts.head.append(head);
             },
 
@@ -112,12 +116,12 @@
              * @private
              */
             _adPosition: function() {
-                var html = '<div class="span3"><table class="table table-hover"><thead><tr><th></th></tr><tr><th>广告位名称,</th><th>尺寸</th></tr></thead>';
-                    html += '<tbody>'
-                    $.each(this.sdata, function(key, dataObj) {
-                        html += '<tr><td>'+dataObj['name']+'</td><td>'+dataObj['width']+' * '+dataObj['height']+'</td></tr>';
-                    });
-                    html += '</tbody></table></div>';
+                var html = '<div class="col-md-3" style="padding:0px;margin-top: 4px;"><table class="table table-hover"><thead><tr><th></th></tr><tr><th>广告位名称,</th><th>尺寸</th></tr></thead>';
+                html += '<tbody>'
+                $.each(this.sdata, function(key, dataObj) {
+                    html += '<tr><td>'+dataObj['name']+'</td><td>'+dataObj['width']+' * '+dataObj['height']+'</td></tr>';
+                });
+                html += '</tbody></table></div>';
 
                 this.table = html + '{tr}';
                 return html;
@@ -133,13 +137,13 @@
                 var maxDays = this._monthDays(this.currDate.getFullYear(), this.currDate.getMonth()+1);
                 var prevNextCols = parseInt((maxDays / 3)/2);
                 var middleCols = maxDays - prevNextCols - 4;
-                var html = '<div class="span9" style="margin-left: 0px;">';
-                    html += '<table class="table table-hover"><thead><tr>';
-                    html += '<td colspan="'+prevNextCols+'"><a class="prevMonth">< 上一月</a></td>';
-                    html += '<th colspan="'+middleCols+'" style="text-align: center;">'+this.currDate.getFullYear()+'-'+this._changeDateFormat((this.currDate.getMonth()+1))+'</th>';
-                    html += '<td colspan="'+prevNextCols+'"><a class="nextMonth">下一月 ></a></td>';
-                    html += '</tr></thead>';
-                    html += '<tbody><tr class="show-days">';
+                var html = '<div class="col-md-9" style="padding: 0px;">';
+                html += '<table class="table table-hover"><thead><tr>';
+                html += '<td colspan="'+prevNextCols+'"><a class="prevMonth">< 上一月</a></td>';
+                html += '<th colspan="'+middleCols+'" style="text-align: center;">'+this.currDate.getFullYear()+'-'+this._changeDateFormat((this.currDate.getMonth()+1))+'</th>';
+                html += '<td colspan="'+prevNextCols+'"><a class="nextMonth">下一月 ></a></td>';
+                html += '</tr></thead>';
+                html += '<tbody><tr class="show-days">';
 
                 for(var num=1; num<=maxDays; num++) {
                     if(num == this.currDate.getDate() && this.currMonth == this.currDate.getMonth()+1) {
@@ -149,11 +153,11 @@
                         html += '<td>'+num+'</td>';
                     }
                 }
-                    html += '</tr>';
+                html += '</tr>';
 
-                    html += this._adDataTable(maxDays);
+                html += this._adDataTable(maxDays);
 
-                    html += '</tbody></table></div>';
+                html += '</tbody></table></div>';
 
                 this.table += html;
 
@@ -210,7 +214,7 @@
                 switch($status) {
                     case 0 :
                         return '<td class="all-sell">' +
-                        '<a href="javascript:void(0);" title="点击查看详情" now_date="' +
+                            '<a href="javascript:void(0);" title="点击查看详情" now_date="' +
                             this.currDate.getFullYear() +'-'+
                             (this.currDate.getMonth()+1) +'-'+
                             $day +'" adposition_id="'+adposition_id+'" ></a></td>';
@@ -401,5 +405,4 @@
             $('.ui-schedule-tip').remove();
         });
     };
-
 })(jQuery);
