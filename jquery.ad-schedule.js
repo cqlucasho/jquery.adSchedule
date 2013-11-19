@@ -1,6 +1,8 @@
 /**
  * ad_schedule
- * @author cqlucasho@gmail.com
+ * @author lucas ho
+ * @contact cqlucasho@gmail.com
+ * @link http://www.lucasho.cn.vc
  * @version 2.0
  *
  * example:
