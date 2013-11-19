@@ -50,16 +50,19 @@
         tbody tr > td.currday {
             background:  -webkit-linear-gradient(top, #ee5f5b 0%, #ee5f5b);
         }
+        
+        
         tbody tr > td.all-sell a {
-            height: 26px;
+            height: 20px;
             position: relative;
             display: block;
         }
         tbody tr > td.parts-sell a {
-            height: 26px;
+            height: 20px;
             position: relative;
             display: block;
         }
+        
 
         .linear-color1 {
             background-color: #46a546;
