@@ -329,7 +329,7 @@
                 dataType: 'json',
                 success: function(data) {
                     var html = '<div class="ui-schedule-glass"';
-                    html += 'style="left: '+(offset.left+5)+'px; top: '+offset.top+'px; ';
+                    html += 'style="left: '+offset.left+'px; top: '+offset.top+'px; ';
                     html += 'visibility: visible;"></div>';
 
                     if(offset.left >= (event.clientX/2)+500) {
