@@ -1,5 +1,5 @@
 /**
- * ad_schedule
+ * 广告排期表 插件
  * @author lucas ho
  * @contact cqlucasho@gmail.com
  * @link http://www.lucasho.cn.vc
@@ -8,8 +8,8 @@
  * example:
  *     $.AdSchedule({
  *                    head: $('.status'),
- *                    postUrl: "<?php echo _url(array('action'=>'select'));?>", // 使用时，修改成对应的类方法或动作
- *                    downcsv: "<?php echo _url(array('action'=>'export'));?>", // 使用时，修改成对应的类方法或动作
+ *                    postUrl: "<?php _url(array('action'=>'select'));?>",  // 使用时，将连接修改为对应的类方法或是控制器动作地址
+ *                    downcsv: "<?php _url(array('action'=>'export'));?>",  // 使用时，将连接修改为对应的类方法或是控制器动作地址
  *                    downDom: '#downcsv',
  *                    selectDom: '#selectViewDate',
  *                    selectStart: '#selectStart',
@@ -336,10 +336,10 @@
                     html += 'visibility: visible;"></div>';
 
                     if(offset.left >= (event.clientX/2)+500) {
-                        offset.left = offset.left-285;
+                        offset.left = offset.left-280;
                     }
 
-                    html += '<div class="ui-schedule-tip" style="left: '+(offset.left)+'px; top: '+(offset.top+29)+'px; visibility: visible;">';
+                    html += '<div class="ui-schedule-tip" style="left: '+(offset.left-9)+'px; top: '+(offset.top+29)+'px; visibility: visible;">';
                     html += '<div class="tip-head"><div class="tip-headcntr"></div><a href="javascript:;" class="tip-close"></a></div>';
                     html += '<div class="tip-main" style="height: auto;">';
                     $.each(data, function(index, dataObj) {
