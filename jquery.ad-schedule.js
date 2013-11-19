@@ -149,6 +149,9 @@
                 html += '<tbody><tr class="show-days">';
 
                 for(var num=1; num<=maxDays; num++) {
+                    if(num < 10) {
+                        num = '0'+num;
+                    }
                     if(num == this.currDate.getDate() && this.currMonth == this.currDate.getMonth()+1) {
                         html += '<td class="currday">'+num+'</td>';
                     }
