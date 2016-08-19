@@ -2,7 +2,7 @@
  * 广告排期表 插件
  * @author lucas ho
  * @contact cqlucasho@gmail.com
- * @link http://www.lucasho.cn.vc
+ * @link http://www.iamhby.com
  *       https://github.com/cqlucasho
  * @version 2.0
  *
